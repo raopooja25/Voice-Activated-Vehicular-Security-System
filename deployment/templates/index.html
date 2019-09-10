@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!--href= "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='datax.css') }}" type = "text/css" >
+
+    <title>Voice Command Analyser</title>
+  </head>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+                      <script>
+                           $(document).ready(function(){
+                                $('#btnRecord').click(function(){
+                                    $.ajax({
+                                      type: 'POST',
+                                      url: '/process',
+                                      success: function(data){
+                                        alert(data);
+                                      }
+                                    });
+                                });
+                                $('#btnSubmit').click(function(){
+                                    $.ajax({
+                                      type: 'POST',
+                                      url: '/predict',
+                                      success: function(data){
+                                        alert(data);
+                                      }
+                                    });
+                                });
+                           });
+                  </script>
+  <hr>
+    <body>
+      <center>
+        <h3>PROJECT ALEXA - Welcome to Voice Access!</h3>
+        <hr>
+      <div id="model">
+        <h4>Please record your voice command</h4>
+        <p> Speak clearly without pausing for 10 seconds</p> 
+        <!-- change to fit the neural network's labels -->
+        <!-- AUDIO -->
+        <div id="controls">
+         <!--<input type="image" src="record.svg" alt="Submit" width="48" height="48" id="recordpic">-->
+         <input type="button" id="btnRecord" value="RECORD">
+         <input type="button" id="btnSubmit" value="PREDICT">
+        </div>
+      </div>
+    </center>
+</body>
+
+</html>
